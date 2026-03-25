@@ -20,12 +20,7 @@
   .sync-status{font-size:0.72rem;color:rgba(255,255,255,0.7);margin-top:1px;}
   .sync-status.live{color:#a8f0c6;}
  
-  /* TOP BANNER */
-  .top-vote-banner{
-    background:#fff8f0;border-bottom:2px solid var(--golden);
-    padding:0.65rem 1.2rem;display:flex;align-items:center;gap:0.7rem;
-    min-height:48px;
-  }
+  .top-vote-banner{background:#fff8f0;border-bottom:2px solid var(--golden);padding:0.65rem 1.2rem;display:flex;align-items:center;gap:0.7rem;min-height:48px;}
   .top-vote-banner .trophy{font-size:1.3rem;flex-shrink:0;}
   .top-vote-banner .tv-label{font-size:0.72rem;color:var(--text-light);font-weight:700;text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap;}
   .top-vote-banner .tv-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text-dark);line-height:1.2;}
@@ -51,7 +46,7 @@
  
   .results-bar{padding:0.2rem 1.2rem 0;font-size:0.77rem;color:var(--text-light);}
  
-  .cards-grid{padding:0.4rem 1.2rem 2.5rem;display:grid;grid-template-columns:1fr;gap:1rem;}
+  .cards-grid{padding:0.4rem 1.2rem 1rem;display:grid;grid-template-columns:1fr;gap:1rem;}
   @media(min-width:500px){.cards-grid{grid-template-columns:1fr 1fr;}}
   @media(min-width:860px){.cards-grid{grid-template-columns:1fr 1fr 1fr;}}
  
@@ -59,16 +54,16 @@
   .meal-card:hover{transform:translateY(-3px);box-shadow:0 5px 22px var(--shadow);}
   .meal-card.hidden{display:none;}
   .meal-card.leading{border:2px solid var(--golden);}
-  .meal-img-wrap{position:relative;height:145px;overflow:hidden;}
-  .meal-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:linear-gradient(135deg,#f5e6d0,#e8cca8);}
-  .cat-badge{position:absolute;top:7px;left:7px;font-size:0.63rem;font-weight:700;padding:3px 8px;border-radius:50px;color:#fff;}
-  .cat-rund{background:#8B4513;}
-  .cat-varken{background:#C2691A;}
-  .cat-gevogelte{background:#b8860b;}
-  .cat-vis{background:#1a6b8a;}
-  .cat-vegetarisch{background:#3D6B4F;}
-  .time-badge{position:absolute;top:7px;right:7px;background:rgba(0,0,0,0.52);color:#fff;font-size:0.66rem;font-weight:600;padding:3px 8px;border-radius:50px;}
-  .info-btn{position:absolute;bottom:7px;right:7px;background:rgba(255,255,255,0.93);border:1.5px solid var(--border);width:28px;height:28px;border-radius:50%;font-size:0.82rem;font-weight:700;color:var(--warm-orange-dark);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .meal-img-wrap{position:relative;height:150px;overflow:hidden;background:#e8d5c0;}
+  .meal-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.3s;}
+  .meal-img-wrap img.loading{opacity:0;}
+  .meal-img-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,#f5e6d0,#e8cca8);z-index:1;}
+  .meal-img-placeholder.hide{display:none;}
+  .cat-badge{position:absolute;top:7px;left:7px;font-size:0.63rem;font-weight:700;padding:3px 8px;border-radius:50px;color:#fff;z-index:2;}
+  .cat-rund{background:#8B4513;} .cat-varken{background:#C2691A;} .cat-gevogelte{background:#b8860b;} .cat-vis{background:#1a6b8a;} .cat-vegetarisch{background:#3D6B4F;}
+  .time-badge{position:absolute;top:7px;right:7px;background:rgba(0,0,0,0.52);color:#fff;font-size:0.66rem;font-weight:600;padding:3px 8px;border-radius:50px;z-index:2;}
+  .info-btn{position:absolute;bottom:7px;right:7px;background:rgba(255,255,255,0.93);border:1.5px solid var(--border);width:28px;height:28px;border-radius:50%;font-size:0.82rem;font-weight:700;color:var(--warm-orange-dark);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;}
+ 
   .meal-body{padding:0.8rem 0.95rem 0.65rem;}
   .meal-title{font-family:'Playfair Display',serif;font-size:0.98rem;color:var(--text-dark);margin-bottom:0.3rem;line-height:1.3;}
   .meal-meta{font-size:0.73rem;color:var(--text-light);margin-bottom:0.6rem;}
@@ -86,6 +81,7 @@
   .modal{background:var(--card-bg);border-radius:24px 24px 0 0;padding:1.4rem 1.4rem 2.5rem;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;animation:slideUp 0.26s ease;}
   @keyframes slideUp{from{transform:translateY(60px);opacity:0;}}
   .modal-handle{width:38px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 1rem;}
+  .modal-img{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:1rem;background:#e8d5c0;}
   .modal h2{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:0.25rem;}
   .modal-sub{font-size:0.8rem;color:var(--text-light);margin-bottom:1rem;}
   .modal-section{margin-bottom:1rem;}
@@ -99,6 +95,10 @@
   .empty-state{text-align:center;padding:2.5rem 1.5rem;color:var(--text-light);grid-column:1/-1;}
   .empty-state .big-icon{font-size:3rem;margin-bottom:0.7rem;}
   .empty-state p{font-size:0.92rem;line-height:1.6;}
+ 
+  .site-footer{text-align:right;padding:0.6rem 1.2rem 1.5rem;font-size:0.68rem;color:var(--text-light);}
+  .site-footer a{color:var(--text-light);text-decoration:none;}
+  .site-footer a:hover{color:var(--warm-orange);}
 </style>
 </head>
 <body>
@@ -111,7 +111,6 @@
   <div style="font-size:1.9rem">🍽️</div>
 </header>
  
-<!-- TOP VOTE BANNER -->
 <div class="top-vote-banner empty" id="top-banner">
   <span class="trophy">🏆</span>
   <div>
@@ -150,12 +149,16 @@
 </div>
  
 <p class="results-bar" id="results-bar"></p>
- 
 <div class="cards-grid" id="cards-grid"></div>
+ 
+<div class="site-footer">
+  Gemaakt door <strong>Xander Huybrechts</strong> &amp; <a href="https://claude.ai" target="_blank">Claude AI</a>
+</div>
  
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-handle"></div>
+    <img class="modal-img" id="modal-img" src="" alt="">
     <h2 id="modal-title"></h2>
     <p class="modal-sub" id="modal-sub"></p>
     <div class="modal-section">
@@ -188,79 +191,82 @@ const fbApp = initializeApp(firebaseConfig);
 const db = getDatabase(fbApp);
 const votesRef = ref(db, 'avondeten/votes');
  
-// ── GERECHTENLIJST ────────────────────────────────────────────────
+// Unsplash source ID geeft een mooie foto per zoekterm, gratis en zonder API key
+function unsplash(query, w, h) {
+  return 'https://source.unsplash.com/featured/' + w + 'x' + h + '/?' + encodeURIComponent(query) + ',food';
+}
+ 
 const MEALS = [
   // RUND
-  { id:'hamburger',      titel:'Hamburger',                       categorie:'rund',       emoji:'🍔', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','hamburgerbroodjes','sla','tomaat','ui','saus'],              beschrijving:'Sappige zelfgemaakte hamburgers met verse toppings. Een favoriet voor jong en oud.' },
-  { id:'stoofvlees',     titel:'Stoofvlees met friet',            categorie:'rund',       emoji:'🥩', bereidingstijd:90, moeilijkheid:'Gemiddeld',  ingredienten:['rundvlees','bruin bier','ui','laurier','tijm','friet'],                    beschrijving:'Echte Belgische klassieker. Zacht vlees in een rijke, diepe saus.' },
-  { id:'goulash',        titel:'Goulash',                         categorie:'rund',       emoji:'🍲', bereidingstijd:75, moeilijkheid:'Gemiddeld',  ingredienten:['rundvlees','paprika','ui','tomatenpuree','paprikapoeder','room'],           beschrijving:'Stevige Hongaarse stoofpot vol warmte en smaak. Heerlijk met pasta of brood.' },
-  { id:'chili',          titel:'Chili con carne',                 categorie:'rund',       emoji:'🌶️', bereidingstijd:50, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','kidneybonen','tomaten','ui','chilipoeder','komijn'],         beschrijving:'Pittige stoofpot met bonen en gehakt. Geserveerd met rijst of tortilla.' },
-  { id:'steak',          titel:'Steak met groenten',              categorie:'rund',       emoji:'🥩', bereidingstijd:20, moeilijkheid:'Gemiddeld',  ingredienten:['entrecote','boter','knoflook','tijm','seizoensgroenten','peper'],          beschrijving:'Sappige steak gebakken in geurige kruidenboter. Simpel en indrukwekkend.' },
-  { id:'balletjes',      titel:'Balletjes in tomatensaus',        categorie:'rund',       emoji:'🍝', bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','tomatensaus','ui','knoflook','peterselie','brood'],         beschrijving:'Zachte gehaktballetjes in een rijke tomatensaus. Klassiek Belgisch comfort food.' },
-  { id:'ovenschotel',    titel:'Ovenschotel aardappel spinazie',  categorie:'rund',       emoji:'🫕', bereidingstijd:60, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','aardappelen','spinazie','room','kaas','ui'],               beschrijving:'Voedzame ovenschotel die zichzelf kookt. Perfect voor een drukke avond.' },
-  { id:'pastaballetjes', titel:'Pasta met balletjes',             categorie:'rund',       emoji:'🍝', bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','pasta','tomatensaus','ui','knoflook','parmezaan'],         beschrijving:'Pasta met sappige gehaktballetjes en verse tomatensaus. Altijd een succes.' },
-  { id:'lasagne',        titel:'Lasagne',                         categorie:'rund',       emoji:'🫕', bereidingstijd:70, moeilijkheid:'Gemiddeld',  ingredienten:['rundergehakt','lasagnebladen','tomatensaus','bechamel','kaas','ui'],      beschrijving:'Laagjes pasta, vlees en romige bechamel. Een klassieker die de hele tafel blij maakt.' },
-  { id:'spaghetti',      titel:'Spaghetti Bolognese',             categorie:'rund',       emoji:'🍝', bereidingstijd:45, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','spaghetti','tomatensaus','ui','knoflook','basilicum'],     beschrijving:'De ultieme pasta klassieker. Rijke vleessaus op al dente spaghetti.' },
-  { id:'tacos',          titel:'Beef tacos',                      categorie:'rund',       emoji:'🌮', bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','tacoschelpen','avocado','tomaat','ui','limoen'],           beschrijving:'Knapperige tacos voor het hele gezin. Iedereen maakt zijn eigen!' },
-  { id:'rundwok',        titel:'Rundvlees wok',                   categorie:'rund',       emoji:'🥢', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['rundvlees reepjes','paprika','broccoli','sojasaus','knoflook','rijst'],   beschrijving:'Snelle roerbak met malse reepjes rundvlees en knapperige groenten.' },
-  { id:'bolognebake',    titel:'Bolognese ovenschotel',           categorie:'rund',       emoji:'🫕', bereidingstijd:55, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','pasta','tomatensaus','mozzarella','parmezaan','basilicum'],beschrijving:'Alles van een bolognese maar dan als gezellige ovenschotel.' },
+  { id:'hamburger',      titel:'Hamburger',                       categorie:'rund',       foto:'hamburger beef',          bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','hamburgerbroodjes','sla','tomaat','ui','saus'],              beschrijving:'Sappige zelfgemaakte hamburgers met verse toppings. Een favoriet voor jong en oud.' },
+  { id:'stoofvlees',     titel:'Stoofvlees met friet',            categorie:'rund',       foto:'beef stew fries belgian',  bereidingstijd:90, moeilijkheid:'Gemiddeld',  ingredienten:['rundvlees','bruin bier','ui','laurier','tijm','friet'],                    beschrijving:'Echte Belgische klassieker. Zacht vlees in een rijke, diepe saus.' },
+  { id:'goulash',        titel:'Goulash',                         categorie:'rund',       foto:'goulash beef stew',        bereidingstijd:75, moeilijkheid:'Gemiddeld',  ingredienten:['rundvlees','paprika','ui','tomatenpuree','paprikapoeder','room'],           beschrijving:'Stevige Hongaarse stoofpot vol warmte en smaak. Heerlijk met pasta of brood.' },
+  { id:'chili',          titel:'Chili con carne',                 categorie:'rund',       foto:'chili con carne bowl',     bereidingstijd:50, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','kidneybonen','tomaten','ui','chilipoeder','komijn'],         beschrijving:'Pittige stoofpot met bonen en gehakt. Geserveerd met rijst of tortilla.' },
+  { id:'steak',          titel:'Steak met groenten',              categorie:'rund',       foto:'beef steak grilled',       bereidingstijd:20, moeilijkheid:'Gemiddeld',  ingredienten:['entrecote','boter','knoflook','tijm','seizoensgroenten','peper'],          beschrijving:'Sappige steak gebakken in geurige kruidenboter. Simpel en indrukwekkend.' },
+  { id:'balletjes',      titel:'Balletjes in tomatensaus',        categorie:'rund',       foto:'meatballs tomato sauce',   bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','tomatensaus','ui','knoflook','peterselie','brood'],         beschrijving:'Zachte gehaktballetjes in een rijke tomatensaus. Klassiek Belgisch comfort food.' },
+  { id:'ovenschotel',    titel:'Ovenschotel aardappel spinazie',  categorie:'rund',       foto:'beef potato spinach bake', bereidingstijd:60, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','aardappelen','spinazie','room','kaas','ui'],               beschrijving:'Voedzame ovenschotel die zichzelf kookt. Perfect voor een drukke avond.' },
+  { id:'pastaballetjes', titel:'Pasta met balletjes',             categorie:'rund',       foto:'pasta meatballs',          bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','pasta','tomatensaus','ui','knoflook','parmezaan'],         beschrijving:'Pasta met sappige gehaktballetjes en verse tomatensaus. Altijd een succes.' },
+  { id:'lasagne',        titel:'Lasagne',                         categorie:'rund',       foto:'lasagne baked pasta',      bereidingstijd:70, moeilijkheid:'Gemiddeld',  ingredienten:['rundergehakt','lasagnebladen','tomatensaus','bechamel','kaas','ui'],      beschrijving:'Laagjes pasta, vlees en romige bechamel. Een klassieker die de hele tafel blij maakt.' },
+  { id:'spaghetti',      titel:'Spaghetti Bolognese',             categorie:'rund',       foto:'spaghetti bolognese',      bereidingstijd:45, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','spaghetti','tomatensaus','ui','knoflook','basilicum'],     beschrijving:'De ultieme pasta klassieker. Rijke vleessaus op al dente spaghetti.' },
+  { id:'tacos',          titel:'Beef tacos',                      categorie:'rund',       foto:'beef tacos mexican',       bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','tacoschelpen','avocado','tomaat','ui','limoen'],           beschrijving:'Knapperige tacos voor het hele gezin. Iedereen maakt zijn eigen!' },
+  { id:'rundwok',        titel:'Rundvlees wok',                   categorie:'rund',       foto:'beef stir fry wok',        bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['rundvlees reepjes','paprika','broccoli','sojasaus','knoflook','rijst'],   beschrijving:'Snelle roerbak met malse reepjes rundvlees en knapperige groenten.' },
+  { id:'bolognebake',    titel:'Bolognese ovenschotel',           categorie:'rund',       foto:'bolognese pasta bake',     bereidingstijd:55, moeilijkheid:'Makkelijk', ingredienten:['rundergehakt','pasta','tomatensaus','mozzarella','parmezaan','basilicum'],beschrijving:'Alles van een bolognese maar dan als gezellige ovenschotel.' },
  
   // GEVOGELTE
-  { id:'geelecurry',     titel:'Gele curry met kip',              categorie:'gevogelte',  emoji:'🍛', bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','gele curry','kokosmelk','paprika','ui','rijst'],               beschrijving:'Aromatische Thaise curry met malse kip. Zacht en vol smaak.' },
-  { id:'kipappelmoes',   titel:'Kip met appelmoes',               categorie:'gevogelte',  emoji:'🍗', bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','appelmoes','aardappelen','boter','tijm','groenten'],          beschrijving:'Huiselijk en troostend. Malse kip met zoete appelmoes, een Belgische favoriet.' },
-  { id:'schnitzel',      titel:'Schnitzel',                       categorie:'gevogelte',  emoji:'🍗', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','paneermeel','ei','citroen','peterselie','friet'],             beschrijving:'Knapperige gepaneerde schnitzel met een schijfje citroen. Snel en lekker.' },
-  { id:'eend',           titel:'Eend',                            categorie:'gevogelte',  emoji:'🦆', bereidingstijd:90, moeilijkheid:'Gevorderd',  ingredienten:['eendenborst','sinaasappel','honing','tijm','knoflook','rode wijn'],      beschrijving:'Feestelijk gerecht met een rijke smaak. De knapperige huid is onweerstaanbaar.' },
-  { id:'kipworst',       titel:'Kippenworst met groenten',        categorie:'gevogelte',  emoji:'🌭', bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['kippenworst','paprika','courgette','ui','aardappelen','olijfolie'],     beschrijving:'Eenvoudige ovenschotel met sappige kipworst en kleurrijke groenten.' },
-  { id:'wraps',          titel:'Wraps met kip',                   categorie:'gevogelte',  emoji:'🌯', bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','wraps','sla','tomaat','komkommer','tzatziki'],               beschrijving:'Frisse wraps gevuld met gegrilde kip. Snel klaar en iedereen vult zelf.' },
-  { id:'blindevink',     titel:'Blinde vink',                     categorie:'gevogelte',  emoji:'🍗', bereidingstijd:45, moeilijkheid:'Gemiddeld',  ingredienten:['kipfilet','gehakt','spek','salie','boter','aardappelen'],               beschrijving:'Traditioneel Belgisch gerecht. Malse kip gevuld met gehakt en gekruid met salie.' },
-  { id:'volauven',       titel:'Vol-au-vent',                     categorie:'gevogelte',  emoji:'🥐', bereidingstijd:50, moeilijkheid:'Gemiddeld',  ingredienten:['kip','champignons','room','boter','bladerdeeg','bouillon'],            beschrijving:'Belgische klassieker op zijn best. Romige kip in een knapperig bladerdeegkuipje.' },
-  { id:'kiptikka',       titel:'Kip tikka masala',                categorie:'gevogelte',  emoji:'🍛', bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','tomatenpuree','room','tikka masala','ui','koriander'],       beschrijving:'Romige Indiase kip vol specerijen. Heerlijk met naan of rijst.' },
-  { id:'kipwok',         titel:'Kip wok met noedels',             categorie:'gevogelte',  emoji:'🥢', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','noedels','paprika','broccoli','sojasaus','sesamolie'],       beschrijving:'Snelle Aziatische wok met malse kip en knapperige groenten.' },
-  { id:'coqauvin',       titel:'Coq au vin',                      categorie:'gevogelte',  emoji:'🍷', bereidingstijd:80, moeilijkheid:'Gemiddeld',  ingredienten:['kip','rode wijn','champignons','spek','ui','tijm'],                    beschrijving:'Frans stoofgerecht met kip in rode wijn. Rijke smaak en feestelijk.' },
+  { id:'geelecurry',     titel:'Gele curry met kip',              categorie:'gevogelte',  foto:'yellow chicken curry thai',bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','gele curry','kokosmelk','paprika','ui','rijst'],               beschrijving:'Aromatische Thaise curry met malse kip. Zacht en vol smaak.' },
+  { id:'kipappelmoes',   titel:'Kip met appelmoes',               categorie:'gevogelte',  foto:'roast chicken applesauce', bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','appelmoes','aardappelen','boter','tijm','groenten'],          beschrijving:'Huiselijk en troostend. Malse kip met zoete appelmoes, een Belgische favoriet.' },
+  { id:'schnitzel',      titel:'Schnitzel',                       categorie:'gevogelte',  foto:'schnitzel breaded chicken',bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','paneermeel','ei','citroen','peterselie','friet'],             beschrijving:'Knapperige gepaneerde schnitzel met een schijfje citroen. Snel en lekker.' },
+  { id:'eend',           titel:'Eend',                            categorie:'gevogelte',  foto:'duck breast roasted',      bereidingstijd:90, moeilijkheid:'Gevorderd',  ingredienten:['eendenborst','sinaasappel','honing','tijm','knoflook','rode wijn'],      beschrijving:'Feestelijk gerecht met een rijke smaak. De knapperige huid is onweerstaanbaar.' },
+  { id:'kipworst',       titel:'Kippenworst met groenten',        categorie:'gevogelte',  foto:'chicken sausage vegetables',bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['kippenworst','paprika','courgette','ui','aardappelen','olijfolie'],     beschrijving:'Eenvoudige ovenschotel met sappige kipworst en kleurrijke groenten.' },
+  { id:'wraps',          titel:'Wraps met kip',                   categorie:'gevogelte',  foto:'chicken wrap tortilla',    bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','wraps','sla','tomaat','komkommer','tzatziki'],               beschrijving:'Frisse wraps gevuld met gegrilde kip. Snel klaar en iedereen vult zelf.' },
+  { id:'blindevink',     titel:'Blinde vink',                     categorie:'gevogelte',  foto:'stuffed chicken roll',     bereidingstijd:45, moeilijkheid:'Gemiddeld',  ingredienten:['kipfilet','gehakt','spek','salie','boter','aardappelen'],               beschrijving:'Traditioneel Belgisch gerecht. Malse kip gevuld met gehakt en gekruid met salie.' },
+  { id:'volauven',       titel:'Vol-au-vent',                     categorie:'gevogelte',  foto:'vol au vent chicken pastry',bereidingstijd:50, moeilijkheid:'Gemiddeld',  ingredienten:['kip','champignons','room','boter','bladerdeeg','bouillon'],            beschrijving:'Belgische klassieker op zijn best. Romige kip in een knapperig bladerdeegkuipje.' },
+  { id:'kiptikka',       titel:'Kip tikka masala',                categorie:'gevogelte',  foto:'chicken tikka masala curry',bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','tomatenpuree','room','tikka masala','ui','koriander'],       beschrijving:'Romige Indiase kip vol specerijen. Heerlijk met naan of rijst.' },
+  { id:'kipwok',         titel:'Kip wok met noedels',             categorie:'gevogelte',  foto:'chicken noodle stir fry',  bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kipfilet','noedels','paprika','broccoli','sojasaus','sesamolie'],       beschrijving:'Snelle Aziatische wok met malse kip en knapperige groenten.' },
+  { id:'coqauvin',       titel:'Coq au vin',                      categorie:'gevogelte',  foto:'coq au vin french chicken',bereidingstijd:80, moeilijkheid:'Gemiddeld',  ingredienten:['kip','rode wijn','champignons','spek','ui','tijm'],                    beschrijving:'Frans stoofgerecht met kip in rode wijn. Rijke smaak en feestelijk.' },
  
   // VARKEN
-  { id:'croque',         titel:'Croque monsieur',                 categorie:'varken',     emoji:'🥪', bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['brood','hesp','kaas','bechamel','mosterd','boter'],                     beschrijving:'Gegrild broodje met ham en kaas. Snel, lekker en altijd goed.' },
-  { id:'varkenshaasje',  titel:'Varkenshaasje',                   categorie:'varken',     emoji:'🥩', bereidingstijd:30, moeilijkheid:'Gemiddeld',  ingredienten:['varkenshaas','room','champignons','ui','mosterd','tijm'],               beschrijving:'Mals varkenshaasje met een romige champignonsaus. Elegant en eenvoudig.' },
-  { id:'quiche',         titel:'Quiche broccoli en spek',         categorie:'varken',     emoji:'🥧', bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['spek','broccoli','eieren','room','kaas','quichedeeg'],                 beschrijving:'Hartige quiche met knapperig spek en broccoli. Warm of koud even lekker.' },
-  { id:'macaroni',       titel:'Macaroni',                        categorie:'varken',     emoji:'🍝', bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['macaroni','hesp','kaas','bechamel','ui','nootmuskaat'],                 beschrijving:'Romige macaroni met hesp en kaas. Ultiem Belgisch comfort food.' },
-  { id:'carbonara',      titel:'Spaghetti carbonara',             categorie:'varken',     emoji:'🍝', bereidingstijd:25, moeilijkheid:'Gemiddeld',  ingredienten:['spaghetti','spekblokjes','eieren','parmezaan','peper','knoflook'],     beschrijving:'Romige Italiaanse pasta zonder room. De kunst zit in de perfecte eieren.' },
-  { id:'ribs',           titel:'Spareribs uit de oven',           categorie:'varken',     emoji:'🍖', bereidingstijd:120,moeilijkheid:'Makkelijk', ingredienten:['spareribs','BBQ saus','honing','knoflook','paprikapoeder','mosterd'],   beschrijving:'Langzaam gegaarde spareribs met een kleverige BBQ-saus. Vingerlikken!' },
-  { id:'varkenswok',     titel:'Varkensreepjes wok',              categorie:'varken',     emoji:'🥢', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['varkensreepjes','paksoi','paprika','oestersaus','knoflook','rijst'],    beschrijving:'Snelle wok met malse varkensreepjes en Aziatische smaken.' },
-  { id:'haspanini',      titel:'Panini met ham en kaas',          categorie:'varken',     emoji:'🥖', bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['ciabatta','hesp','kaas','tomaat','pesto','rucola'],                     beschrijving:'Knapperige gegrilde panini gevuld met ham, kaas en verse toppings.' },
+  { id:'croque',         titel:'Croque monsieur',                 categorie:'varken',     foto:'croque monsieur sandwich', bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['brood','hesp','kaas','bechamel','mosterd','boter'],                     beschrijving:'Gegrild broodje met ham en kaas. Snel, lekker en altijd goed.' },
+  { id:'varkenshaasje',  titel:'Varkenshaasje',                   categorie:'varken',     foto:'pork tenderloin mushroom',  bereidingstijd:30, moeilijkheid:'Gemiddeld',  ingredienten:['varkenshaas','room','champignons','ui','mosterd','tijm'],               beschrijving:'Mals varkenshaasje met een romige champignonsaus. Elegant en eenvoudig.' },
+  { id:'quiche',         titel:'Quiche broccoli en spek',         categorie:'varken',     foto:'quiche bacon broccoli',    bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['spek','broccoli','eieren','room','kaas','quichedeeg'],                 beschrijving:'Hartige quiche met knapperig spek en broccoli. Warm of koud even lekker.' },
+  { id:'macaroni',       titel:'Macaroni',                        categorie:'varken',     foto:'macaroni cheese ham',      bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['macaroni','hesp','kaas','bechamel','ui','nootmuskaat'],                 beschrijving:'Romige macaroni met hesp en kaas. Ultiem Belgisch comfort food.' },
+  { id:'carbonara',      titel:'Spaghetti carbonara',             categorie:'varken',     foto:'spaghetti carbonara pasta',bereidingstijd:25, moeilijkheid:'Gemiddeld',  ingredienten:['spaghetti','spekblokjes','eieren','parmezaan','peper','knoflook'],     beschrijving:'Romige Italiaanse pasta zonder room. De kunst zit in de perfecte eieren.' },
+  { id:'ribs',           titel:'Spareribs uit de oven',           categorie:'varken',     foto:'spare ribs bbq oven',      bereidingstijd:120,moeilijkheid:'Makkelijk', ingredienten:['spareribs','BBQ saus','honing','knoflook','paprikapoeder','mosterd'],   beschrijving:'Langzaam gegaarde spareribs met een kleverige BBQ-saus. Vingerlikken!' },
+  { id:'varkenswok',     titel:'Varkensreepjes wok',              categorie:'varken',     foto:'pork stir fry asian',      bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['varkensreepjes','paksoi','paprika','oestersaus','knoflook','rijst'],    beschrijving:'Snelle wok met malse varkensreepjes en Aziatische smaken.' },
+  { id:'haspanini',      titel:'Panini met ham en kaas',          categorie:'varken',     foto:'panini ham cheese grilled',bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['ciabatta','hesp','kaas','tomaat','pesto','rucola'],                     beschrijving:'Knapperige gegrilde panini gevuld met ham, kaas en verse toppings.' },
  
   // VIS
-  { id:'asperges',       titel:'Asperges met gerookte zalm',      categorie:'vis',        emoji:'🐟', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['asperges','gerookte zalm','eieren','boter','citroen','peterselie'],    beschrijving:'Elegante lenteklassieker. Verse asperges met zalm en een zachte saus.' },
-  { id:'gebakkenzalm',   titel:'Gebakken zalm',                   categorie:'vis',        emoji:'🐟', bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['zalmfilet','citroen','dille','boter','knoflook','groenten'],           beschrijving:'Sappige zalmfilet gebakken in kruidenboter. Snel, gezond en heerlijk.' },
-  { id:'kabeljauw',      titel:'Kabeljauw',                       categorie:'vis',        emoji:'🐠', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kabeljauw','citroen','peterselie','boter','kappertjes','aardappelen'],  beschrijving:'Zachte witvis met een frisse saus. Licht en voedzaam.' },
-  { id:'sushi',          titel:'Sushi',                           categorie:'vis',        emoji:'🍣', bereidingstijd:60, moeilijkheid:'Gevorderd',  ingredienten:['sushirijst','zalm','tonijn','nori','avocado','sojasaus'],              beschrijving:'Zelfgemaakte sushi voor de avonturieren. Vers, leuk om samen te maken.' },
-  { id:'paella',         titel:'Paella',                          categorie:'vis',        emoji:'🥘', bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['rijst','garnalen','mosselen','paprika','saffraan','citroen'],          beschrijving:'Spaanse rijstschotel vol zeevruchten. Feestelijk en vol smaak.' },
-  { id:'scampis',        titel:'Pasta met scampis',               categorie:'vis',        emoji:'🍝', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['scampis','pasta','knoflook','olijfolie','citroen','peterselie'],       beschrijving:'Italiaanse pasta met sappige scampis in knoflookolie. Verfijnd en snel.' },
-  { id:'mosselen',       titel:'Mosselen',                        categorie:'vis',        emoji:'🦪', bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['mosselen','ui','selder','witte wijn','boter','friet'],                 beschrijving:'Belgische mosselen op z\'n best. Stoom ze open en geniet met friet.' },
-  { id:'zalmsoep',       titel:'Zalmsoep',                        categorie:'vis',        emoji:'🍜', bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['zalm','aardappelen','room','prei','dille','bouillon'],                 beschrijving:'Romige soep vol zalm en groenten. Warm en voedzaam.' },
-  { id:'spaghettivis',   titel:'Spaghetti zalm broccoli',         categorie:'vis',        emoji:'🍝', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['zalm','spaghetti','broccoli','room','citroen','dille'],                beschrijving:'Romige pasta met zalm en broccoli. Snel en fris van smaak.' },
-  { id:'pokebowl',       titel:'Poke bowl',                       categorie:'vis',        emoji:'🥗', bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['zalm of tonijn','rijst','avocado','edamame','komkommer','sojasaus'],   beschrijving:'Kleurrijke bowl met verse ingrediënten. Gezond en visueel verbluffend.' },
-  { id:'visovenschotel', titel:'Vis ovenschotel',                 categorie:'vis',        emoji:'🐡', bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['witvis','aardappelen','room','prei','kaas','citroen'],                 beschrijving:'Romige ovenschotel met vis en aardappelen. Eenvoudig en voedzaam.' },
-  { id:'garnalenkroket', titel:'Garnaalkroketten',                categorie:'vis',        emoji:'🦐', bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['grijze garnalen','bechamel','paneermeel','ei','frituurolie','sla'],     beschrijving:'Belgische klassieker. Knapperige kroketten met een romige garnaalvulling.' },
+  { id:'asperges',       titel:'Asperges met gerookte zalm',      categorie:'vis',        foto:'asparagus smoked salmon',  bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['asperges','gerookte zalm','eieren','boter','citroen','peterselie'],    beschrijving:'Elegante lenteklassieker. Verse asperges met zalm en een zachte saus.' },
+  { id:'gebakkenzalm',   titel:'Gebakken zalm',                   categorie:'vis',        foto:'pan seared salmon fillet', bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['zalmfilet','citroen','dille','boter','knoflook','groenten'],           beschrijving:'Sappige zalmfilet gebakken in kruidenboter. Snel, gezond en heerlijk.' },
+  { id:'kabeljauw',      titel:'Kabeljauw',                       categorie:'vis',        foto:'cod fish fillet lemon',    bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['kabeljauw','citroen','peterselie','boter','kappertjes','aardappelen'],  beschrijving:'Zachte witvis met een frisse saus. Licht en voedzaam.' },
+  { id:'sushi',          titel:'Sushi',                           categorie:'vis',        foto:'sushi rolls salmon platter',bereidingstijd:60, moeilijkheid:'Gevorderd',  ingredienten:['sushirijst','zalm','tonijn','nori','avocado','sojasaus'],              beschrijving:'Zelfgemaakte sushi voor de avonturieren. Vers, leuk om samen te maken.' },
+  { id:'paella',         titel:'Paella',                          categorie:'vis',        foto:'paella seafood rice spain', bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['rijst','garnalen','mosselen','paprika','saffraan','citroen'],          beschrijving:'Spaanse rijstschotel vol zeevruchten. Feestelijk en vol smaak.' },
+  { id:'scampis',        titel:'Pasta met scampis',               categorie:'vis',        foto:'shrimp prawn pasta garlic',bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['scampis','pasta','knoflook','olijfolie','citroen','peterselie'],       beschrijving:'Italiaanse pasta met sappige scampis in knoflookolie. Verfijnd en snel.' },
+  { id:'mosselen',       titel:'Mosselen',                        categorie:'vis',        foto:'moules mussels frites',    bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['mosselen','ui','selder','witte wijn','boter','friet'],                 beschrijving:'Belgische mosselen op z\'n best. Stoom ze open en geniet met friet.' },
+  { id:'zalmsoep',       titel:'Zalmsoep',                        categorie:'vis',        foto:'salmon soup creamy',       bereidingstijd:30, moeilijkheid:'Makkelijk', ingredienten:['zalm','aardappelen','room','prei','dille','bouillon'],                 beschrijving:'Romige soep vol zalm en groenten. Warm en voedzaam.' },
+  { id:'spaghettivis',   titel:'Spaghetti zalm broccoli',         categorie:'vis',        foto:'pasta salmon broccoli',    bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['zalm','spaghetti','broccoli','room','citroen','dille'],                beschrijving:'Romige pasta met zalm en broccoli. Snel en fris van smaak.' },
+  { id:'pokebowl',       titel:'Poke bowl',                       categorie:'vis',        foto:'poke bowl tuna salmon',    bereidingstijd:20, moeilijkheid:'Makkelijk', ingredienten:['zalm of tonijn','rijst','avocado','edamame','komkommer','sojasaus'],   beschrijving:'Kleurrijke bowl met verse ingrediënten. Gezond en visueel verbluffend.' },
+  { id:'visovenschotel', titel:'Vis ovenschotel',                 categorie:'vis',        foto:'fish potato cream bake',   bereidingstijd:40, moeilijkheid:'Makkelijk', ingredienten:['witvis','aardappelen','room','prei','kaas','citroen'],                 beschrijving:'Romige ovenschotel met vis en aardappelen. Eenvoudig en voedzaam.' },
+  { id:'garnalenkroket', titel:'Garnaalkroketten',                categorie:'vis',        foto:'shrimp croquettes belgian',bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['grijze garnalen','bechamel','paneermeel','ei','frituurolie','sla'],     beschrijving:'Belgische klassieker. Knapperige kroketten met een romige garnaalvulling.' },
  
   // VEGETARISCH
-  { id:'omelet',         titel:'Groot omelet',                    categorie:'vegetarisch',emoji:'🍳', bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['eieren','kaas','paprika','ui','champignons','kruiden'],                beschrijving:'Luchtig omelet met verse groenten en kaas. Snel en voedzaam.' },
-  { id:'groentesoep',    titel:'Groentesoep',                     categorie:'vegetarisch',emoji:'🥣', bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['wortel','prei','selder','aardappelen','bouillon','peterselie'],        beschrijving:'Huisgemaakte soep met verse groenten. Warm en troostend.' },
-  { id:'caprese',        titel:'Caprese salade',                  categorie:'vegetarisch',emoji:'🥗', bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['mozzarella','tomaten','basilicum','olijfolie','balsamico','zout'],     beschrijving:'Simpele Italiaanse salade op zijn mooist. Vers, kleurrijk en vol smaak.' },
-  { id:'avocadotoast',   titel:'Avocado toast',                   categorie:'vegetarisch',emoji:'🥑', bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['avocado','brood','ei','citroen','chilivlokken','zaatjes'],             beschrijving:'Trendy en voedzaam. Geroosterd brood met romige avocado en een gepocheerd ei.' },
-  { id:'pizzamarg',      titel:'Pizza margherita',                categorie:'vegetarisch',emoji:'🍕', bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['pizzadeeg','tomatensaus','mozzarella','basilicum','olijfolie','zout'],  beschrijving:'De koningin van de pizza\'s. Simpel maar perfect in balans.' },
-  { id:'kaaskroketten',  titel:'Kaaskroketten',                   categorie:'vegetarisch',emoji:'🧀', bereidingstijd:45, moeilijkheid:'Gemiddeld',  ingredienten:['kaas','bechamel','paneermeel','ei','frituurolie','sla'],               beschrijving:'Knapperige kroketten met een smeltende kaaskern. Belgisch en onweerstaanbaar.' },
-  { id:'griekse',        titel:'Griekse salade',                  categorie:'vegetarisch',emoji:'🥗', bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['tomaten','komkommer','olijven','feta','rode ui','oregano'],            beschrijving:'Frisse Mediterrane salade. Perfect als lichte maaltijd op een warme dag.' },
-  { id:'couscous',       titel:'Couscous met groenten',           categorie:'vegetarisch',emoji:'🥘', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['couscous','courgette','paprika','kikkererwten','ras el hanout','rozijnen'],beschrijving:'Lichte Noord-Afrikaanse schotel vol specerijen en kleur.' },
-  { id:'pastapesto',     titel:'Pasta pesto',                     categorie:'vegetarisch',emoji:'🍝', bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['pasta','pesto','pijnboompitten','parmezaan','kerstomaatjes','basilicum'],beschrijving:'De snelste lekkere pasta. Groene pesto met kerstomaatjes en parmezaan.' },
-  { id:'risotto',        titel:'Groente risotto',                 categorie:'vegetarisch',emoji:'🍚', bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['risottorijst','courgette','parmezaan','ui','witte wijn','bouillon'],   beschrijving:'Romige risotto vol verse groenten. Comfortfood op zijn best.' },
-  { id:'quicheveg',      titel:'Quiche met groenten',             categorie:'vegetarisch',emoji:'🥧', bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['quichedeeg','eieren','room','courgette','paprika','kaas'],             beschrijving:'Hartige quiche gevuld met kleurrijke groenten en kaas.' },
-  { id:'falafel',        titel:'Falafel met pitabrood',           categorie:'vegetarisch',emoji:'🧆', bereidingstijd:30, moeilijkheid:'Gemiddeld',  ingredienten:['kikkererwten','pita','komijn','koriander','knoflook','tahini'],        beschrijving:'Knapperige falafelballetjes in warm pitabrood met tzatziki.' },
-  { id:'tomatosoep',     titel:'Tomatensoep met brood',           categorie:'vegetarisch',emoji:'🍅', bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['tomaten','ui','knoflook','room','basilicum','stokbrood'],              beschrijving:'Romige zelfgemaakte tomatensoep. Warm, snel en verrassend lekker.' },
+  { id:'omelet',         titel:'Groot omelet',                    categorie:'vegetarisch',foto:'omelette cheese vegetables',bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['eieren','kaas','paprika','ui','champignons','kruiden'],                beschrijving:'Luchtig omelet met verse groenten en kaas. Snel en voedzaam.' },
+  { id:'groentesoep',    titel:'Groentesoep',                     categorie:'vegetarisch',foto:'vegetable soup homemade',  bereidingstijd:35, moeilijkheid:'Makkelijk', ingredienten:['wortel','prei','selder','aardappelen','bouillon','peterselie'],        beschrijving:'Huisgemaakte soep met verse groenten. Warm en troostend.' },
+  { id:'caprese',        titel:'Caprese salade',                  categorie:'vegetarisch',foto:'caprese salad mozzarella', bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['mozzarella','tomaten','basilicum','olijfolie','balsamico','zout'],     beschrijving:'Simpele Italiaanse salade op zijn mooist. Vers, kleurrijk en vol smaak.' },
+  { id:'avocadotoast',   titel:'Avocado toast',                   categorie:'vegetarisch',foto:'avocado toast egg',        bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['avocado','brood','ei','citroen','chilivlokken','zaatjes'],             beschrijving:'Trendy en voedzaam. Geroosterd brood met romige avocado en een gepocheerd ei.' },
+  { id:'pizzamarg',      titel:'Pizza margherita',                categorie:'vegetarisch',foto:'pizza margherita fresh',   bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['pizzadeeg','tomatensaus','mozzarella','basilicum','olijfolie','zout'],  beschrijving:'De koningin van de pizza\'s. Simpel maar perfect in balans.' },
+  { id:'kaaskroketten',  titel:'Kaaskroketten',                   categorie:'vegetarisch',foto:'cheese croquettes fried',  bereidingstijd:45, moeilijkheid:'Gemiddeld',  ingredienten:['kaas','bechamel','paneermeel','ei','frituurolie','sla'],               beschrijving:'Knapperige kroketten met een smeltende kaaskern. Belgisch en onweerstaanbaar.' },
+  { id:'griekse',        titel:'Griekse salade',                  categorie:'vegetarisch',foto:'greek salad feta olives',  bereidingstijd:10, moeilijkheid:'Makkelijk', ingredienten:['tomaten','komkommer','olijven','feta','rode ui','oregano'],            beschrijving:'Frisse Mediterrane salade. Perfect als lichte maaltijd op een warme dag.' },
+  { id:'couscous',       titel:'Couscous met groenten',           categorie:'vegetarisch',foto:'couscous roasted vegetables',bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['couscous','courgette','paprika','kikkererwten','ras el hanout','rozijnen'],beschrijving:'Lichte Noord-Afrikaanse schotel vol specerijen en kleur.' },
+  { id:'pastapesto',     titel:'Pasta pesto',                     categorie:'vegetarisch',foto:'pasta pesto basil',        bereidingstijd:15, moeilijkheid:'Makkelijk', ingredienten:['pasta','pesto','pijnboompitten','parmezaan','kerstomaatjes','basilicum'],beschrijving:'De snelste lekkere pasta. Groene pesto met kerstomaatjes en parmezaan.' },
+  { id:'risotto',        titel:'Groente risotto',                 categorie:'vegetarisch',foto:'risotto mushroom parmesan', bereidingstijd:40, moeilijkheid:'Gemiddeld',  ingredienten:['risottorijst','courgette','parmezaan','ui','witte wijn','bouillon'],   beschrijving:'Romige risotto vol verse groenten. Comfortfood op zijn best.' },
+  { id:'quicheveg',      titel:'Quiche met groenten',             categorie:'vegetarisch',foto:'vegetable quiche tart',    bereidingstijd:55, moeilijkheid:'Gemiddeld',  ingredienten:['quichedeeg','eieren','room','courgette','paprika','kaas'],             beschrijving:'Hartige quiche gevuld met kleurrijke groenten en kaas.' },
+  { id:'falafel',        titel:'Falafel met pitabrood',           categorie:'vegetarisch',foto:'falafel pita bread wrap',  bereidingstijd:30, moeilijkheid:'Gemiddeld',  ingredienten:['kikkererwten','pita','komijn','koriander','knoflook','tahini'],        beschrijving:'Knapperige falafelballetjes in warm pitabrood met tzatziki.' },
+  { id:'tomatosoep',     titel:'Tomatensoep met brood',           categorie:'vegetarisch',foto:'tomato soup cream bread',  bereidingstijd:25, moeilijkheid:'Makkelijk', ingredienten:['tomaten','ui','knoflook','room','basilicum','stokbrood'],              beschrijving:'Romige zelfgemaakte tomatensoep. Warm, snel en verrassend lekker.' },
 ];
  
 const CAT_LABEL = { rund:'🥩 Rund', varken:'🐷 Varken', gevogelte:'🍗 Gevogelte', vis:'🐟 Vis', vegetarisch:'🌱 Vegetarisch' };
 const CAT_CLASS  = { rund:'cat-rund', varken:'cat-varken', gevogelte:'cat-gevogelte', vis:'cat-vis', vegetarisch:'cat-vegetarisch' };
- 
 const MEMBERS = ['mama','papa','kind1','kind2'];
 const LABELS  = { mama:'Mama', papa:'Papa', kind1:'Xander', kind2:'Jani' };
 const ICONS   = { mama:'👩', papa:'👨‍🍳', kind1:'🧒', kind2:'👧' };
@@ -277,29 +283,19 @@ onValue(votesRef, snap => {
   renderAll();
 });
  
-async function saveVotes() {
-  await set(votesRef, votes);
-}
+async function saveVotes() { await set(votesRef, votes); }
  
 window.selectMember = btn => {
   document.querySelectorAll('.avatar-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentMember = btn.dataset.member;
-  renderAll();
+  btn.classList.add('active'); currentMember = btn.dataset.member; renderAll();
 };
- 
 window.selectTime = btn => {
   document.querySelectorAll('[data-time]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  timeFilter = btn.dataset.time;
-  renderAll();
+  btn.classList.add('active'); timeFilter = btn.dataset.time; renderAll();
 };
- 
 window.selectCat = btn => {
   document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  catFilter = btn.dataset.cat;
-  renderAll();
+  btn.classList.add('active'); catFilter = btn.dataset.cat; renderAll();
 };
  
 function mealVisible(meal) {
@@ -310,61 +306,55 @@ function mealVisible(meal) {
   return true;
 }
  
-function renderAll() {
-  updateTopBanner();
-  renderCards();
-}
+function renderAll() { updateTopBanner(); renderCards(); }
  
 function updateTopBanner() {
   const visible = MEALS.filter(mealVisible);
   let max = 0, topMeal = null;
-  visible.forEach(meal => {
-    const v = (votes[meal.id] || []).length;
-    if (v > max) { max = v; topMeal = meal; }
-  });
- 
+  visible.forEach(m => { const v = (votes[m.id]||[]).length; if (v > max) { max = v; topMeal = m; } });
   const banner = document.getElementById('top-banner');
-  const tvName = document.getElementById('tv-name');
-  const tvSub  = document.getElementById('tv-sub');
-  const tvVotes = document.getElementById('tv-votes');
- 
   if (!topMeal || max === 0) {
     banner.className = 'top-vote-banner empty';
-    tvName.textContent = 'Nog niemand gestemd';
-    tvSub.textContent = '';
-    tvVotes.style.display = 'none';
+    document.getElementById('tv-name').textContent = 'Nog niemand gestemd';
+    document.getElementById('tv-sub').textContent = '';
+    document.getElementById('tv-votes').style.display = 'none';
   } else {
     banner.className = 'top-vote-banner';
-    tvName.textContent = topMeal.titel;
-    tvSub.textContent = CAT_LABEL[topMeal.categorie] + ' · ' + topMeal.bereidingstijd + ' min';
-    tvVotes.textContent = max + (max === 1 ? ' stem' : ' stemmen');
-    tvVotes.style.display = 'block';
+    document.getElementById('tv-name').textContent = topMeal.titel;
+    document.getElementById('tv-sub').textContent = CAT_LABEL[topMeal.categorie] + ' · ' + topMeal.bereidingstijd + ' min';
+    const vEl = document.getElementById('tv-votes');
+    vEl.textContent = max + (max === 1 ? ' stem' : ' stemmen');
+    vEl.style.display = 'block';
   }
+}
+ 
+function imgUrl(meal) {
+  return unsplash(meal.foto, 400, 300);
+}
+ 
+function unsplash(query, w, h) {
+  return 'https://source.unsplash.com/featured/' + w + 'x' + h + '/?' + encodeURIComponent(query) + ',food';
 }
  
 function renderCards() {
   const grid = document.getElementById('cards-grid');
   const visible = MEALS.filter(mealVisible);
- 
   document.getElementById('results-bar').textContent =
-    visible.length === MEALS.length
-      ? MEALS.length + ' gerechten'
-      : visible.length + ' van ' + MEALS.length + ' gerechten';
+    visible.length === MEALS.length ? MEALS.length + ' gerechten' : visible.length + ' van ' + MEALS.length + ' gerechten';
  
   if (visible.length === 0) {
     grid.innerHTML = '<div class="empty-state"><div class="big-icon">🔍</div><p>Geen gerechten voor deze filters.<br>Pas de filters aan om meer te zien.</p></div>';
     return;
   }
  
-  // Sort: most votes first within visible
+  let max = 0;
+  visible.forEach(m => { const v = (votes[m.id]||[]).length; if (v > max) max = v; });
+ 
   const sorted = [...MEALS].sort((a, b) => {
     const va = mealVisible(a) ? (votes[a.id]||[]).length : -1;
     const vb = mealVisible(b) ? (votes[b.id]||[]).length : -1;
     return vb - va;
   });
- 
-  let max = 0;
-  visible.forEach(m => { const v = (votes[m.id]||[]).length; if (v > max) max = v; });
  
   grid.innerHTML = sorted.map(meal => {
     const show = mealVisible(meal);
@@ -376,7 +366,10 @@ function renderCards() {
     ).join('');
     return '<div class="meal-card' + (show ? '' : ' hidden') + (isLeading ? ' leading' : '') + '">'
       + '<div class="meal-img-wrap">'
-      + '<div class="meal-img-placeholder">' + meal.emoji + '</div>'
+      + '<div class="meal-img-placeholder" id="ph-' + meal.id + '">🍽️</div>'
+      + '<img src="' + imgUrl(meal) + '" alt="' + meal.titel + '" class="loading" '
+      + 'onload="this.classList.remove(\'loading\');document.getElementById(\'ph-' + meal.id + '\').classList.add(\'hide\')" '
+      + 'onerror="this.style.display=\'none\'" />'
       + '<span class="cat-badge ' + CAT_CLASS[meal.categorie] + '">' + CAT_LABEL[meal.categorie] + '</span>'
       + '<span class="time-badge">⏱ ' + meal.bereidingstijd + ' min</span>'
       + '<button class="info-btn" onclick="openModal(\'' + meal.id + '\')">i</button>'
@@ -404,6 +397,9 @@ window.toggleVote = async id => {
  
 window.openModal = id => {
   const m = MEALS.find(x => x.id === id);
+  const img = document.getElementById('modal-img');
+  img.src = imgUrl(m);
+  img.alt = m.titel;
   document.getElementById('modal-title').textContent = m.titel;
   document.getElementById('modal-sub').textContent = CAT_LABEL[m.categorie] + ' · ' + m.bereidingstijd + ' min · ' + m.moeilijkheid;
   document.getElementById('modal-ingredients').innerHTML = m.ingredienten.map(i => '<li>' + i + '</li>').join('');
