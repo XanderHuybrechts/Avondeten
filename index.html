@@ -7,110 +7,112 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FDF6EC; --warm-orange: #E8845A; --warm-orange-light: #F5C4A8;
-    --warm-orange-dark: #C45F38; --forest: #3D6B4F; --forest-light: #A8C9B4;
-    --golden: #F0B429; --text-dark: #2C1A0E; --text-mid: #6B4C35;
-    --text-light: #9C7A65; --card-bg: #FFFAF4; --border: #E8D5C0;
-    --shadow: rgba(44,26,14,0.10);
+    --cream:#FDF6EC;--warm-orange:#E8845A;--warm-orange-light:#F5C4A8;
+    --warm-orange-dark:#C45F38;--forest:#3D6B4F;--forest-light:#A8C9B4;
+    --golden:#F0B429;--text-dark:#2C1A0E;--text-mid:#6B4C35;
+    --text-light:#9C7A65;--card-bg:#FFFAF4;--border:#E8D5C0;--shadow:rgba(44,26,14,0.10);
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; }
-  header { background: var(--warm-orange); padding: 1.2rem 1.5rem 1rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
-  header h1 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; letter-spacing: -0.5px; }
-  header p { font-size: 0.78rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
-  .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #4caf50; display: inline-block; margin-left: 6px; vertical-align: middle; }
-  .sync-dot.syncing { background: var(--golden); animation: pulse 1s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
-  .avatar-bar { background: #fff8f0; border-bottom: 1px solid var(--border); padding: 0.7rem 1.2rem; display: flex; align-items: center; gap: 0.8rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .avatar-bar > span { font-size: 0.75rem; color: var(--text-light); white-space: nowrap; }
-  .avatar-btn { border: 2px solid var(--border); background: #fff; border-radius: 50px; padding: 0.3rem 0.8rem; font-size: 0.8rem; font-family: 'Nunito', sans-serif; cursor: pointer; transition: all 0.18s; white-space: nowrap; color: var(--text-mid); display: flex; align-items: center; gap: 5px; }
-  .avatar-btn.active { background: var(--warm-orange); border-color: var(--warm-orange); color: #fff; }
-  .filters { padding: 1rem 1.2rem 0.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
-  .filter-row { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
-  .filter-label { font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; min-width: 60px; }
-  .filter-chip { border: 1.5px solid var(--border); background: #fff; border-radius: 50px; padding: 0.28rem 0.85rem; font-size: 0.8rem; font-family: 'Nunito', sans-serif; cursor: pointer; transition: all 0.16s; color: var(--text-mid); }
-  .filter-chip.active { background: var(--forest); border-color: var(--forest); color: #fff; }
-  .fridge-row { display: flex; gap: 0.5rem; align-items: center; flex: 1; }
-  .fridge-input { flex: 1; border: 1.5px solid var(--border); border-radius: 50px; padding: 0.3rem 0.9rem; font-size: 0.82rem; font-family: 'Nunito', sans-serif; background: #fff; color: var(--text-dark); outline: none; min-width: 0; }
-  .fridge-input:focus { border-color: var(--warm-orange); }
-  .fridge-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .fridge-tag { background: var(--forest-light); color: #1e4030; border-radius: 50px; font-size: 0.75rem; padding: 0.2rem 0.65rem; display: flex; align-items: center; gap: 4px; font-weight: 600; }
-  .fridge-tag button { background: none; border: none; cursor: pointer; color: #1e4030; font-size: 0.9rem; padding: 0; line-height: 1; }
-  .generate-wrap { padding: 0.8rem 1.2rem; }
-  .generate-btn { width: 100%; background: var(--warm-orange); color: #fff; border: none; border-radius: 50px; padding: 0.75rem 1.5rem; font-size: 1rem; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; transition: background 0.18s, transform 0.12s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-  .generate-btn:active { transform: scale(0.98); }
-  .generate-btn:hover { background: var(--warm-orange-dark); }
-  .generate-btn:disabled { background: var(--warm-orange-light); cursor: not-allowed; }
-  .loading-state { text-align: center; padding: 3rem 1rem; display: none; }
-  .loading-spinner { width: 44px; height: 44px; border: 4px solid var(--border); border-top-color: var(--warm-orange); border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 1rem; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-state p { color: var(--text-light); font-size: 0.9rem; }
-  .cards-grid { padding: 0.5rem 1.2rem 2rem; display: grid; grid-template-columns: 1fr; gap: 1.2rem; }
-  @media (min-width: 540px) { .cards-grid { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 900px) { .cards-grid { grid-template-columns: 1fr 1fr 1fr; } }
-  .meal-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 2px 14px var(--shadow); transition: transform 0.18s, box-shadow 0.18s; position: relative; }
-  .meal-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px var(--shadow); }
-  .meal-img-wrap { position: relative; height: 170px; background: #e8d5c0; overflow: hidden; }
-  .meal-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: linear-gradient(135deg, #f5e6d0, #e8cca8); }
-  .veg-badge { position: absolute; top: 8px; left: 8px; background: var(--forest); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; }
-  .time-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.55); color: #fff; font-size: 0.68rem; font-weight: 600; padding: 3px 9px; border-radius: 50px; display: flex; align-items: center; gap: 3px; }
-  .info-btn { position: absolute; bottom: 8px; right: 8px; background: rgba(255,255,255,0.92); border: 1.5px solid var(--border); width: 30px; height: 30px; border-radius: 50%; font-size: 0.85rem; font-weight: 700; color: var(--warm-orange-dark); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
-  .info-btn:hover { background: #fff; }
-  .meal-body { padding: 0.9rem 1rem 0.7rem; }
-  .meal-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text-dark); margin-bottom: 0.4rem; line-height: 1.3; }
-  .meal-meta { font-size: 0.75rem; color: var(--text-light); margin-bottom: 0.7rem; }
-  .vote-section { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 0.65rem; }
-  .vote-avatars { display: flex; gap: 4px; flex-wrap: wrap; }
-  .vote-chip { font-size: 0.72rem; padding: 2px 8px; border-radius: 50px; border: 1.5px solid var(--border); background: #fff; color: var(--text-mid); font-weight: 600; }
-  .vote-chip.voted { background: var(--golden); border-color: var(--golden); color: #5a3a00; }
-  .vote-btn { background: var(--warm-orange); color: #fff; border: none; border-radius: 50px; padding: 0.3rem 0.85rem; font-size: 0.78rem; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; transition: background 0.15s; }
-  .vote-btn:hover { background: var(--warm-orange-dark); }
-  .vote-btn.voted-by-me { background: var(--golden); color: #3a2000; }
-  .vote-count { font-size: 0.78rem; font-weight: 700; color: var(--text-mid); margin-left: 0.4rem; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(44,26,14,0.45); z-index: 200; align-items: flex-end; justify-content: center; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--card-bg); border-radius: 24px 24px 0 0; padding: 1.5rem 1.5rem 2.5rem; width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.28s ease; }
-  @keyframes slideUp { from { transform: translateY(60px); opacity: 0; } }
-  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 0 auto 1rem; }
-  .modal h2 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.3rem; }
-  .modal-sub { font-size: 0.82rem; color: var(--text-light); margin-bottom: 1rem; }
-  .modal-section { margin-bottom: 1.1rem; }
-  .modal-section h3 { font-size: 0.8rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
-  .ingredient-list { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .ingredient-list li { background: var(--warm-orange-light); color: var(--warm-orange-dark); border-radius: 50px; font-size: 0.8rem; padding: 0.22rem 0.75rem; font-weight: 600; }
-  .ingredient-list li.in-fridge { background: var(--forest-light); color: #1e4030; }
-  .modal-description { font-size: 0.9rem; color: var(--text-mid); line-height: 1.6; }
-  .modal-close { width: 100%; margin-top: 1.2rem; background: none; border: 1.5px solid var(--border); border-radius: 50px; padding: 0.6rem; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: var(--text-mid); cursor: pointer; transition: background 0.15s; }
-  .modal-close:hover { background: var(--border); }
-  .winner-banner { display: none; margin: 0 1.2rem 1rem; background: var(--golden); border-radius: 14px; padding: 0.8rem 1.2rem; align-items: center; gap: 0.7rem; }
-  .winner-banner.show { display: flex; }
-  .winner-banner .trophy { font-size: 1.5rem; }
-  .winner-banner p { font-size: 0.85rem; font-weight: 700; color: #3a2000; }
-  .winner-banner p span { display: block; font-size: 1rem; }
-  .empty-state { text-align: center; padding: 3rem 1.5rem; color: var(--text-light); }
-  .empty-state .big-icon { font-size: 3.5rem; margin-bottom: 0.8rem; }
-  .empty-state p { font-size: 0.95rem; line-height: 1.6; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--text-dark); padding: 0.5rem 1.2rem 0.2rem; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text-dark);min-height:100vh;}
+  header{background:var(--warm-orange);padding:1.2rem 1.5rem 1rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.12);}
+  header h1{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;letter-spacing:-0.5px;}
+  .sync-status{font-size:0.73rem;color:rgba(255,255,255,0.7);margin-top:2px;}
+  .sync-status.live{color:#a8f0c6;}
+  .avatar-bar{background:#fff8f0;border-bottom:1px solid var(--border);padding:0.7rem 1.2rem;display:flex;align-items:center;gap:0.8rem;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .avatar-bar>span{font-size:0.75rem;color:var(--text-light);white-space:nowrap;}
+  .avatar-btn{border:2px solid var(--border);background:#fff;border-radius:50px;padding:0.3rem 0.8rem;font-size:0.8rem;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.18s;white-space:nowrap;color:var(--text-mid);display:flex;align-items:center;gap:5px;}
+  .avatar-btn.active{background:var(--warm-orange);border-color:var(--warm-orange);color:#fff;}
+  .filters{padding:1rem 1.2rem 0.5rem;display:flex;flex-direction:column;gap:0.7rem;}
+  .filter-row{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;}
+  .filter-label{font-size:0.75rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;min-width:60px;}
+  .filter-chip{border:1.5px solid var(--border);background:#fff;border-radius:50px;padding:0.28rem 0.85rem;font-size:0.8rem;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.16s;color:var(--text-mid);}
+  .filter-chip.active{background:var(--forest);border-color:var(--forest);color:#fff;}
+  .fridge-row{display:flex;gap:0.5rem;align-items:center;flex:1;}
+  .fridge-input{flex:1;border:1.5px solid var(--border);border-radius:50px;padding:0.3rem 0.9rem;font-size:0.82rem;font-family:'Nunito',sans-serif;background:#fff;color:var(--text-dark);outline:none;min-width:0;}
+  .fridge-input:focus{border-color:var(--warm-orange);}
+  .fridge-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .fridge-tag{background:var(--forest-light);color:#1e4030;border-radius:50px;font-size:0.75rem;padding:0.2rem 0.65rem;display:flex;align-items:center;gap:4px;font-weight:600;}
+  .fridge-tag button{background:none;border:none;cursor:pointer;color:#1e4030;font-size:0.9rem;padding:0;line-height:1;}
+  .generate-wrap{padding:0.8rem 1.2rem;}
+  .generate-btn{width:100%;background:var(--warm-orange);color:#fff;border:none;border-radius:50px;padding:0.75rem 1.5rem;font-size:1rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:background 0.18s,transform 0.12s;display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+  .generate-btn:active{transform:scale(0.98);}
+  .generate-btn:hover{background:var(--warm-orange-dark);}
+  .generate-btn:disabled{background:var(--warm-orange-light);cursor:not-allowed;}
+  .loading-state{text-align:center;padding:3rem 1rem;display:none;}
+  .loading-spinner{width:44px;height:44px;border:4px solid var(--border);border-top-color:var(--warm-orange);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 1rem;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-state p{color:var(--text-light);font-size:0.9rem;}
+  .cards-grid{padding:0.5rem 1.2rem 2rem;display:grid;grid-template-columns:1fr;gap:1.2rem;}
+  @media(min-width:540px){.cards-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:900px){.cards-grid{grid-template-columns:1fr 1fr 1fr;}}
+  .meal-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 2px 14px var(--shadow);transition:transform 0.18s,box-shadow 0.18s;}
+  .meal-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px var(--shadow);}
+  .meal-img-wrap{position:relative;height:170px;background:#e8d5c0;overflow:hidden;}
+  .meal-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,#f5e6d0,#e8cca8);}
+  .cat-badge{position:absolute;top:8px;left:8px;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:50px;color:#fff;}
+  .cat-vlees{background:#8B4513;}
+  .cat-vis{background:#1a6b8a;}
+  .cat-kip{background:#b8860b;}
+  .cat-vegetarisch{background:var(--forest);}
+  .cat-vrij{background:#7B4A9E;}
+  .time-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.55);color:#fff;font-size:0.68rem;font-weight:600;padding:3px 9px;border-radius:50px;}
+  .info-btn{position:absolute;bottom:8px;right:8px;background:rgba(255,255,255,0.92);border:1.5px solid var(--border);width:30px;height:30px;border-radius:50%;font-size:0.85rem;font-weight:700;color:var(--warm-orange-dark);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .meal-body{padding:0.9rem 1rem 0.7rem;}
+  .meal-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--text-dark);margin-bottom:0.4rem;line-height:1.3;}
+  .meal-meta{font-size:0.75rem;color:var(--text-light);margin-bottom:0.7rem;}
+  .vote-section{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:0.65rem;}
+  .vote-avatars{display:flex;gap:4px;flex-wrap:wrap;}
+  .vote-chip{font-size:0.72rem;padding:2px 8px;border-radius:50px;border:1.5px solid var(--border);background:#fff;color:var(--text-mid);font-weight:600;}
+  .vote-chip.voted{background:var(--golden);border-color:var(--golden);color:#5a3a00;}
+  .vote-btn{background:var(--warm-orange);color:#fff;border:none;border-radius:50px;padding:0.3rem 0.85rem;font-size:0.78rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;}
+  .vote-btn:hover{background:var(--warm-orange-dark);}
+  .vote-btn.voted-by-me{background:var(--golden);color:#3a2000;}
+  .vote-count{font-size:0.78rem;font-weight:700;color:var(--text-mid);margin-left:0.4rem;}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(44,26,14,0.45);z-index:200;align-items:flex-end;justify-content:center;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:var(--card-bg);border-radius:24px 24px 0 0;padding:1.5rem 1.5rem 2.5rem;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;animation:slideUp 0.28s ease;}
+  @keyframes slideUp{from{transform:translateY(60px);opacity:0;}}
+  .modal-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 1rem;}
+  .modal h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:0.3rem;}
+  .modal-sub{font-size:0.82rem;color:var(--text-light);margin-bottom:1rem;}
+  .modal-section{margin-bottom:1.1rem;}
+  .modal-section h3{font-size:0.8rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.5rem;}
+  .ingredient-list{list-style:none;display:flex;flex-wrap:wrap;gap:0.4rem;}
+  .ingredient-list li{background:var(--warm-orange-light);color:var(--warm-orange-dark);border-radius:50px;font-size:0.8rem;padding:0.22rem 0.75rem;font-weight:600;}
+  .ingredient-list li.in-fridge{background:var(--forest-light);color:#1e4030;}
+  .modal-description{font-size:0.9rem;color:var(--text-mid);line-height:1.6;}
+  .modal-close{width:100%;margin-top:1.2rem;background:none;border:1.5px solid var(--border);border-radius:50px;padding:0.6rem;font-family:'Nunito',sans-serif;font-size:0.9rem;color:var(--text-mid);cursor:pointer;}
+  .winner-banner{display:none;margin:0 1.2rem 1rem;background:var(--golden);border-radius:14px;padding:0.8rem 1.2rem;align-items:center;gap:0.7rem;}
+  .winner-banner.show{display:flex;}
+  .winner-banner p{font-size:0.85rem;font-weight:700;color:#3a2000;}
+  .winner-banner p span{display:block;font-size:1rem;}
+  .empty-state{text-align:center;padding:3rem 1.5rem;color:var(--text-light);}
+  .empty-state .big-icon{font-size:3.5rem;margin-bottom:0.8rem;}
+  .empty-state p{font-size:0.95rem;line-height:1.6;}
+  .section-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--text-dark);padding:0.5rem 1.2rem 0.2rem;}
+  .legend{display:flex;flex-wrap:wrap;gap:0.4rem;padding:0 1.2rem 0.6rem;}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--text-mid);}
+  .legend-dot{width:8px;height:8px;border-radius:50%;}
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div>
-    <h1>Wat Eten We Vanavond? <span class="sync-dot" id="sync-dot"></span></h1>
-    <p>Laat je inspireren &mdash; stem mee!</p>
+    <h1>Wat Eten We Vanavond?</h1>
+    <p class="sync-status" id="sync-status">Verbinden...</p>
   </div>
   <div style="font-size:2rem">🍽️</div>
 </header>
-
+ 
 <div class="avatar-bar">
   <span>Jij bent:</span>
   <button class="avatar-btn active" data-member="mama" onclick="selectMember(this)"><span>👩</span> Mama</button>
   <button class="avatar-btn" data-member="papa" onclick="selectMember(this)"><span>👨‍🍳</span> Papa</button>
-  <button class="avatar-btn" data-member="xander" onclick="selectMember(this)"><span>🧒</span> Xander</button>
-  <button class="avatar-btn" data-member="jani" onclick="selectMember(this)"><span>👧</span> Jani</button>
+  <button class="avatar-btn" data-member="kind1" onclick="selectMember(this)"><span>🧒</span> Xander</button>
+  <button class="avatar-btn" data-member="kind2" onclick="selectMember(this)"><span>👧</span> Jani</button>
 </div>
-
+ 
 <div class="filters">
   <div class="filter-row" id="papa-time-row" style="display:none">
     <span class="filter-label">⏱ Tijd</span>
@@ -123,7 +125,7 @@
     <button class="filter-chip active" data-veg="alles" onclick="selectVeg(this)">Alles</button>
     <button class="filter-chip" data-veg="veg" onclick="selectVeg(this)">Vegetarisch</button>
   </div>
-  <div class="filter-row" style="flex-wrap:nowrap;" id="fridge-controls">
+  <div class="filter-row" id="fridge-controls" style="display:none;flex-wrap:nowrap;">
     <span class="filter-label">🧊 Frigo</span>
     <div style="flex:1;display:flex;flex-direction:column;gap:0.4rem;">
       <div class="fridge-row">
@@ -134,33 +136,39 @@
     </div>
   </div>
 </div>
-
-<div id="papa-only-note" style="margin:0.5rem 1.2rem;padding:0.65rem 1rem;background:#fff8f0;border:1px solid var(--border);border-radius:12px;font-size:0.82rem;color:var(--text-mid);display:none;">
+ 
+<div id="papa-only-note" style="margin:0.5rem 1.2rem;padding:0.65rem 1rem;background:#fff8f0;border:1px solid var(--border);border-radius:12px;font-size:0.82rem;color:var(--text-mid);">
   👨‍🍳 Papa kiest vandaag de gerechten. Jij kan stemmen op wat je lekker vindt!
 </div>
-
+ 
 <div class="generate-wrap">
-  <button class="generate-btn" id="generate-btn" onclick="generateMeals()">✨ Geef mij inspiratie!</button>
+  <button class="generate-btn" id="generate-btn" onclick="generateMeals()" style="display:none;">
+    ✨ Geef mij inspiratie!
+  </button>
 </div>
-
+ 
 <div class="winner-banner" id="winner-banner">
-  <span class="trophy">🏆</span>
-  <p>Vanavond eten we: <span id="winner-name">...</span></p>
+  <span style="font-size:1.5rem">🏆</span>
+  <p>Vanavond eten we: <span id="winner-name"></span></p>
 </div>
-
+ 
 <div class="loading-state" id="loading">
   <div class="loading-spinner"></div>
   <p>Even bedenken wat lekker is... 🍳</p>
 </div>
-
+ 
 <div id="section-title-wrap"></div>
-<div class="cards-grid" id="cards-grid">
-  <div class="empty-state">
-    <div class="big-icon">🥘</div>
-    <p>Papa kiest straks de gerechten.<br>Dan kan jij stemmen!</p>
-  </div>
+<div id="legend" style="display:none" class="legend">
+  <span class="legend-item"><span class="legend-dot" style="background:#8B4513"></span>Vlees</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#1a6b8a"></span>Vis</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#b8860b"></span>Kip</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#3D6B4F"></span>Vegetarisch</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#7B4A9E"></span>Vrije keuze</span>
 </div>
-
+<div class="cards-grid" id="cards-grid">
+  <div class="empty-state"><div class="big-icon">🥘</div><p>Verbinden met database...</p></div>
+</div>
+ 
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-handle"></div>
@@ -177,12 +185,12 @@
     <button class="modal-close" onclick="closeModal()">Sluiten</button>
   </div>
 </div>
-
+ 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-
-const app = initializeApp({
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+ 
+const firebaseConfig = {
   apiKey: "AIzaSyAkfCiTJ5e6vXoseKx5Q9n6qwhrxhTD1DY",
   authDomain: "app-avondeten-3af85.firebaseapp.com",
   databaseURL: "https://app-avondeten-3af85-default-rtdb.europe-west1.firebasedatabase.app",
@@ -190,69 +198,68 @@ const app = initializeApp({
   storageBucket: "app-avondeten-3af85.firebasestorage.app",
   messagingSenderId: "200417463431",
   appId: "1:200417463431:web:b0332a04734caa48fdfc22"
-});
-const db = getDatabase(app);
-const dbRef = ref(db, 'avondeten');
-
-const MEMBERS = ['mama','papa','xander','jani'];
-const LABELS  = { mama:'Mama', papa:'Papa', xander:'Xander', jani:'Jani' };
-const ICONS   = { mama:'👩', papa:'👨‍🍳', xander:'🧒', jani:'👧' };
-
+};
+ 
+const fbApp = initializeApp(firebaseConfig);
+const db = getDatabase(fbApp);
+const dataRef = ref(db, 'avondeten/vandaag');
+ 
+const MEMBERS = ['mama','papa','kind1','kind2'];
+const LABELS  = { mama:'Mama', papa:'Papa', kind1:'Xander', kind2:'Jani' };
+const ICONS   = { mama:'👩', papa:'👨‍🍳', kind1:'🧒', kind2:'👧' };
+const CAT_LABELS = { vlees:'🥩 Vlees', vis:'🐟 Vis', kip:'🍗 Kip', vegetarisch:'🌱 Veg', vrij:'🌍 Vrij' };
+const CAT_CLASS  = { vlees:'cat-vlees', vis:'cat-vis', kip:'cat-kip', vegetarisch:'cat-vegetarisch', vrij:'cat-vrij' };
+ 
 let currentMember = 'mama';
 let timeFilter = 'snel';
 let vegFilter  = 'alles';
 let fridgeItems = [];
 let meals = [];
 let votes = {};
-
-const syncDot = document.getElementById('sync-dot');
-
-// ── FIREBASE LISTENER (real-time) ────────────────────────────────
-onValue(dbRef, snap => {
+ 
+onValue(dataRef, snap => {
   const d = snap.val();
-  if (!d) return;
+  document.getElementById('sync-status').textContent = '● Live';
+  document.getElementById('sync-status').className = 'sync-status live';
+  if (!d || !d.meals || !d.meals.length) {
+    document.getElementById('cards-grid').innerHTML = '<div class="empty-state"><div class="big-icon">🥘</div><p>Papa moet eerst gerechten kiezen.<br>Schakel naar <strong>Papa</strong> om te beginnen.</p></div>';
+    document.getElementById('section-title-wrap').innerHTML = '';
+    document.getElementById('legend').style.display = 'none';
+    return;
+  }
   meals = d.meals || [];
   votes = d.votes || {};
   fridgeItems = d.fridgeItems || [];
   renderFridgeTags();
-  document.getElementById('cards-grid').style.display = 'grid';
-  syncDot.className = 'sync-dot';
   renderCards();
 });
-
+ 
 async function save() {
-  syncDot.className = 'sync-dot syncing';
-  await set(dbRef, { meals, votes, fridgeItems, updatedAt: Date.now() });
+  await set(dataRef, { meals, votes, fridgeItems, updatedAt: Date.now() });
 }
-
-// ── UI HELPERS ───────────────────────────────────────────────────
-function updatePapaUI() {
-  const p = currentMember === 'papa';
-  document.getElementById('papa-time-row').style.display   = p ? 'flex'  : 'none';
-  document.getElementById('generate-btn').style.display    = p ? 'flex'  : 'none';
-  document.getElementById('papa-only-note').style.display  = p ? 'none'  : 'block';
-  document.getElementById('fridge-controls').style.display = p ? 'flex'  : 'none';
-}
-
+ 
 window.selectMember = btn => {
   document.querySelectorAll('.avatar-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentMember = btn.dataset.member;
-  updatePapaUI();
+  const papa = currentMember === 'papa';
+  document.getElementById('papa-time-row').style.display   = papa ? 'flex'  : 'none';
+  document.getElementById('generate-btn').style.display    = papa ? 'flex'  : 'none';
+  document.getElementById('papa-only-note').style.display  = papa ? 'none'  : 'block';
+  document.getElementById('fridge-controls').style.display = papa ? 'flex'  : 'none';
   renderCards();
 };
+ 
 window.selectTime = btn => {
   document.querySelectorAll('[data-time]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  timeFilter = btn.dataset.time;
+  btn.classList.add('active'); timeFilter = btn.dataset.time;
 };
+ 
 window.selectVeg = btn => {
   document.querySelectorAll('[data-veg]').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  vegFilter = btn.dataset.veg;
+  btn.classList.add('active'); vegFilter = btn.dataset.veg;
 };
-
-// ── FRIDGE ───────────────────────────────────────────────────────
+ 
 window.addFridgeItem = () => {
   const inp = document.getElementById('fridge-input');
   inp.value.split(',').forEach(v => {
@@ -262,20 +269,20 @@ window.addFridgeItem = () => {
   inp.value = '';
   renderFridgeTags();
 };
+ 
 document.getElementById('fridge-input').addEventListener('keydown', e => { if (e.key === 'Enter') window.addFridgeItem(); });
-
+ 
 window.removeFridgeItem = item => {
   fridgeItems = fridgeItems.filter(i => i !== item);
   renderFridgeTags();
 };
-
+ 
 function renderFridgeTags() {
   document.getElementById('fridge-tags').innerHTML = fridgeItems.map(item =>
-    `<span class="fridge-tag">${item}<button onclick="removeFridgeItem('${item}')">✕</button></span>`
+    '<span class="fridge-tag">' + item + '<button onclick="removeFridgeItem(\'' + item + '\')">&#x2715;</button></span>'
   ).join('');
 }
-
-// ── GENERATE ─────────────────────────────────────────────────────
+ 
 window.generateMeals = async () => {
   if (currentMember !== 'papa') return;
   const btn = document.getElementById('generate-btn');
@@ -283,122 +290,144 @@ window.generateMeals = async () => {
   document.getElementById('loading').style.display = 'block';
   document.getElementById('cards-grid').style.display = 'none';
   document.getElementById('section-title-wrap').innerHTML = '';
+  document.getElementById('legend').style.display = 'none';
   document.getElementById('winner-banner').classList.remove('show');
-
-  const tijdTxt = { snel:'minder dan 30 minuten', normaal:'30 tot 60 minuten', uitgebreid:'meer dan 60 minuten' }[timeFilter];
+ 
+  const tijdMap = { snel:'minder dan 30 minuten', normaal:'30 tot 60 minuten', uitgebreid:'meer dan 60 minuten' };
+  const tijdTxt = tijdMap[timeFilter];
   const vegTxt  = vegFilter === 'veg' ? 'Geef ook vegetarische opties. ' : '';
-  const frigTxt = fridgeItems.length ? `Gebruik bij voorkeur deze ingrediënten: ${fridgeItems.join(', ')}. ` : '';
-
+  const frigTxt = fridgeItems.length > 0 ? 'Gebruik bij voorkeur deze ingredienten die we al hebben: ' + fridgeItems.join(', ') + '. ' : '';
+  const seed    = Math.floor(Math.random() * 99999);
+ 
+  const prompt = 'Stel precies 6 verrassende en gevarieerde avondgerechten voor een Belgisch gezin voor (variatiecode: ' + seed + '). '
+    + 'Bereiding duurt ' + tijdTxt + '. ' + frigTxt + vegTxt
+    + 'Verdeel de 6 gerechten ALTIJD als volgt: '
+    + '1. Een rund- of varkensgerecht (bv. stoofvlees, gehaktballen, karbonade, varkenshaas, steak...) '
+    + '2. Een visgerecht (bv. zalm, kabeljauw, garnalen, tonijn, mosselen, zeeduivel, forel...) '
+    + '3. Een kipgerecht (bv. kip curry, kip in roomsaus, coq au vin, kip wok, kip tajine, kip parmigiana...) '
+    + '4. Een vegetarisch gerecht (bv. pasta, risotto, groenteschotel, quiche, falafel, halloumi...) '
+    + '5. Een vrij gerecht uit de wereldkeuken - iets origineels (Mexicaans, Japans, Grieks, Indisch, Libanees, Thais...) '
+    + '6. Nog een verrassend vrij gerecht, totaal anders dan de vorige 5. '
+    + 'Wees CREATIEF en VERRASSEND. Vermijd saaie standaardkeuzes. Varieer in keuken, bereidingstechniek en presentatie. '
+    + 'Reageer ALLEEN met een JSON array van exact 6 items, geen markdown, geen backticks, geen uitleg: '
+    + '[{"titel":"...","keuken":"...","bereidingstijd":"25 min","vegetarisch":false,"categorie":"vlees","emoji":"...","ingredienten":["...","...","...","...","...","..."],"beschrijving":"2 smakelijke zinnen.","moeilijkheid":"Makkelijk"}] '
+    + 'Gebruik voor categorie enkel: vlees, vis, kip, vegetarisch of vrij.';
+ 
   try {
-    const res  = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        messages: [{ role: "user", content:
-          `Stel 4 avondgerechten voor een Belgisch gezin voor. Bereiding duurt ${tijdTxt}. ${vegTxt}${frigTxt}Mix van keukens (Belgisch, Italiaans, Aziatisch, internationaal).
-Reageer ALLEEN met JSON array, geen markdown, geen backticks:
-[{"titel":"...","keuken":"...","bereidingstijd":"25 min","vegetarisch":false,"emoji":"🍝","ingredienten":["...","...","...","...","...","..."],"beschrijving":"2 zinnen.","moeilijkheid":"Makkelijk"}]`
-        }]
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1800,
+        messages: [{ role: 'user', content: prompt }]
       })
     });
     const data = await res.json();
-    meals = JSON.parse(data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim());
+    const raw = data.content.map(i => i.text || '').join('').replace(/```json|```/g, '').trim();
+    meals = JSON.parse(raw);
   } catch(e) {
     meals = [
-      {titel:"Spaghetti Bolognese",keuken:"Italiaans",bereidingstijd:"35 min",vegetarisch:false,emoji:"🍝",ingredienten:["gehakt","spaghetti","tomatensaus","ui","knoflook","basilicum"],beschrijving:"Een klassieker die iedereen lust.",moeilijkheid:"Makkelijk"},
-      {titel:"Groentecurry",keuken:"Aziatisch",bereidingstijd:"25 min",vegetarisch:true,emoji:"🍛",ingredienten:["bloemkool","spinazie","kikkererwten","kokosmelk","currypasta","rijst"],beschrijving:"Kleurrijke curry boordevol groenten.",moeilijkheid:"Makkelijk"},
-      {titel:"Stoofvlees met friet",keuken:"Belgisch",bereidingstijd:"90 min",vegetarisch:false,emoji:"🥩",ingredienten:["rundvlees","bruin bier","ui","laurier","tijm","friet"],beschrijving:"Échte Belgische klassieker.",moeilijkheid:"Gemiddeld"},
-      {titel:"Zalmfilet met groenten",keuken:"Internationaal",bereidingstijd:"20 min",vegetarisch:false,emoji:"🐟",ingredienten:["zalm","citroen","dille","asperges","aardappelen","boter"],beschrijving:"Lekker en gezond.",moeilijkheid:"Makkelijk"}
+      {titel:'Varkenshaas met champignonsaus',keuken:'Belgisch',bereidingstijd:'35 min',vegetarisch:false,categorie:'vlees',emoji:'🥩',ingredienten:['varkenshaas','champignons','room','ui','knoflook','tijm'],beschrijving:'Sappige varkenshaas met een rijke saus. Een echte troostmaaltijd.',moeilijkheid:'Gemiddeld'},
+      {titel:'Kabeljauw met mosterdkorst',keuken:'Belgisch',bereidingstijd:'25 min',vegetarisch:false,categorie:'vis',emoji:'🐟',ingredienten:['kabeljauw','mosterd','paneermeel','citroen','peterselie','boter'],beschrijving:'Knapperige vis uit de oven. Snel klaar en vol smaak.',moeilijkheid:'Makkelijk'},
+      {titel:'Kip tikka masala',keuken:'Indisch',bereidingstijd:'40 min',vegetarisch:false,categorie:'kip',emoji:'🍗',ingredienten:['kip','tomatenpuree','room','tikka masala','ui','koriander'],beschrijving:'Romige Indiase kip met veel smaak. Heerlijk met naan.',moeilijkheid:'Makkelijk'},
+      {titel:'Groente risotto',keuken:'Italiaans',bereidingstijd:'35 min',vegetarisch:true,categorie:'vegetarisch',emoji:'🍚',ingredienten:['risottorijst','courgette','parmezaan','ui','witte wijn','bouillon'],beschrijving:'Romige risotto vol verse groenten. Comfortfood op zijn best.',moeilijkheid:'Gemiddeld'},
+      {titel:'Beef tacos',keuken:'Mexicaans',bereidingstijd:'30 min',vegetarisch:false,categorie:'vrij',emoji:'🌮',ingredienten:['rundergehakt','tacoschelpen','avocado','tomaat','ui','limoen'],beschrijving:'Knapperige tacos voor het hele gezin. Iedereen maakt zijn eigen!',moeilijkheid:'Makkelijk'},
+      {titel:'Gyoza met miso soep',keuken:'Japans',bereidingstijd:'40 min',vegetarisch:false,categorie:'vrij',emoji:'🥟',ingredienten:['gyoza','miso','varkensvlees','kool','sesamolie','lente-ui'],beschrijving:'Japanse dumplings met een warme soep. Verrassend en heerlijk.',moeilijkheid:'Gemiddeld'}
     ];
   }
-
+ 
   votes = {};
-  meals.forEach((_,i) => votes[i] = []);
+  meals.forEach((_, i) => { votes[i] = []; });
   await save();
-
+ 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('cards-grid').style.display = 'grid';
   btn.disabled = false;
-  renderCards();
 };
-
-// ── RENDER CARDS ─────────────────────────────────────────────────
+ 
 function renderCards() {
-  const grid = document.getElementById('cards-grid');
-  if (!meals.length) {
-    grid.innerHTML = `<div class="empty-state"><div class="big-icon">🥘</div><p>Papa kiest straks de gerechten.<br>Dan kan jij stemmen!</p></div>`;
-    document.getElementById('section-title-wrap').innerHTML = '';
-    return;
-  }
-  document.getElementById('section-title-wrap').innerHTML = `<p class="section-title">Vandaag's inspiratie ✨</p>`;
-  grid.innerHTML = meals.map((meal,i) => {
+  if (!meals.length) return;
+  document.getElementById('section-title-wrap').innerHTML = '<p class="section-title">Vandaag\'s inspiratie ✨</p>';
+  document.getElementById('legend').style.display = 'flex';
+  document.getElementById('cards-grid').style.display = 'grid';
+ 
+  document.getElementById('cards-grid').innerHTML = meals.map((meal, i) => {
     const mv = votes[i] || [];
-    const my = mv.includes(currentMember);
-    const chips = MEMBERS.map(m => `<span class="vote-chip ${mv.includes(m)?'voted':''}" title="${LABELS[m]}">${ICONS[m]}</span>`).join('');
-    return `<div class="meal-card">
-      <div class="meal-img-wrap">
-        <div class="meal-img-placeholder">${meal.emoji||'🍽️'}</div>
-        ${meal.vegetarisch?'<span class="veg-badge">🌱 Veg</span>':''}
-        <span class="time-badge">⏱ ${meal.bereidingstijd}</span>
-        <button class="info-btn" onclick="openModal(${i})">i</button>
-      </div>
-      <div class="meal-body">
-        <p class="meal-title">${meal.titel}</p>
-        <p class="meal-meta">${meal.keuken} · ${meal.moeilijkheid}</p>
-        <div class="vote-section">
-          <div style="display:flex;align-items:center;gap:6px;">
-            <div class="vote-avatars">${chips}</div>
-            <span class="vote-count">${mv.length}/4</span>
-          </div>
-          <button class="vote-btn ${my?'voted-by-me':''}" onclick="toggleVote(${i})">${my?'✓ Gestemd':'👍 Stem'}</button>
-        </div>
-      </div>
-    </div>`;
+    const myVoted = mv.includes(currentMember);
+    const chips = MEMBERS.map(m =>
+      '<span class="vote-chip ' + (mv.includes(m) ? 'voted' : '') + '" title="' + LABELS[m] + '">' + ICONS[m] + '</span>'
+    ).join('');
+    const cat = meal.categorie || 'vrij';
+    const catLabel = CAT_LABELS[cat] || cat;
+    const catClass = CAT_CLASS[cat] || 'cat-vrij';
+    return '<div class="meal-card">'
+      + '<div class="meal-img-wrap">'
+      + '<div class="meal-img-placeholder">' + (meal.emoji || '🍽️') + '</div>'
+      + '<span class="cat-badge ' + catClass + '">' + catLabel + '</span>'
+      + '<span class="time-badge">⏱ ' + meal.bereidingstijd + '</span>'
+      + '<button class="info-btn" onclick="openModal(' + i + ')">i</button>'
+      + '</div>'
+      + '<div class="meal-body">'
+      + '<p class="meal-title">' + meal.titel + '</p>'
+      + '<p class="meal-meta">' + meal.keuken + ' · ' + meal.moeilijkheid + '</p>'
+      + '<div class="vote-section">'
+      + '<div style="display:flex;align-items:center;gap:6px;">'
+      + '<div class="vote-avatars">' + chips + '</div>'
+      + '<span class="vote-count">' + mv.length + '/4</span>'
+      + '</div>'
+      + '<button class="vote-btn ' + (myVoted ? 'voted-by-me' : '') + '" onclick="toggleVote(' + i + ')">'
+      + (myVoted ? '✓ Gestemd' : '👍 Stem') + '</button>'
+      + '</div></div></div>';
   }).join('');
+ 
   checkWinner();
 }
-
-// ── VOTE ─────────────────────────────────────────────────────────
+ 
 window.toggleVote = async idx => {
   if (!votes[idx]) votes[idx] = [];
   const pos = votes[idx].indexOf(currentMember);
-  if (pos >= 0) votes[idx].splice(pos,1);
-  else votes[idx].push(currentMember);
+  if (pos >= 0) votes[idx].splice(pos, 1); else votes[idx].push(currentMember);
   await save();
-  renderCards();
 };
-
+ 
 function checkWinner() {
-  let max=0, winner=-1;
-  meals.forEach((_,i) => { const v=(votes[i]||[]).length; if(v>max){max=v;winner=i;} });
-  const voters = new Set(Object.values(votes).flat()).size;
+  let max = 0, winner = -1;
+  meals.forEach((_, i) => { const v = (votes[i] || []).length; if (v > max) { max = v; winner = i; } });
+  const total = new Set(Object.values(votes).flat()).size;
   const banner = document.getElementById('winner-banner');
-  if (voters >= 2 && winner >= 0 && max >= 2) {
+  if (total >= 2 && winner >= 0 && max >= 2) {
     banner.classList.add('show');
     document.getElementById('winner-name').textContent = meals[winner].titel;
-  } else banner.classList.remove('show');
+  } else {
+    banner.classList.remove('show');
+  }
 }
-
-// ── MODAL ────────────────────────────────────────────────────────
+ 
 window.openModal = idx => {
   const m = meals[idx];
   document.getElementById('modal-title').textContent = m.titel;
-  document.getElementById('modal-sub').textContent = `${m.keuken} · ${m.bereidingstijd} · ${m.moeilijkheid}`;
+  document.getElementById('modal-sub').textContent = m.keuken + ' · ' + m.bereidingstijd + ' · ' + m.moeilijkheid;
   document.getElementById('modal-ingredients').innerHTML = m.ingredienten.map(ing => {
-    const inF = fridgeItems.some(f => ing.toLowerCase().includes(f)||f.includes(ing.toLowerCase()));
-    return `<li class="${inF?'in-fridge':''}">${inF?'✓ ':''}${ing}</li>`;
+    const inF = fridgeItems.some(f => ing.toLowerCase().includes(f) || f.includes(ing.toLowerCase()));
+    return '<li class="' + (inF ? 'in-fridge' : '') + '">' + (inF ? '✓ ' : '') + ing + '</li>';
   }).join('');
   document.getElementById('modal-description').textContent = m.beschrijving;
   document.getElementById('modal-overlay').classList.add('open');
 };
+ 
 window.closeModal = e => {
   if (!e || e.target === document.getElementById('modal-overlay'))
     document.getElementById('modal-overlay').classList.remove('open');
 };
-
-updatePapaUI();
+ 
+// Init papa UI
+const papa = currentMember === 'papa';
+document.getElementById('papa-time-row').style.display   = papa ? 'flex'  : 'none';
+document.getElementById('generate-btn').style.display    = papa ? 'flex'  : 'none';
+document.getElementById('papa-only-note').style.display  = papa ? 'none'  : 'block';
+document.getElementById('fridge-controls').style.display = papa ? 'flex'  : 'none';
 </script>
 </body>
 </html>
+ 
